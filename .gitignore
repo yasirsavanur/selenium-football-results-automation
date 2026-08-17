@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Test and quality tooling
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+
+# Runtime output
+artifacts/
+data/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/

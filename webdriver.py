@@ -1,39 +1,11 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
+"""Backward-compatible launcher for the football results automation CLI.
 
-options = webdriver.ChromeOptions()
+Install the project first with ``python -m pip install -e .`` and then run:
 
-options.add_experimental_option(name = "detach", value = True)
+    python webdriver.py --country England --league "Premier League"
+"""
 
-driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+from football_results_scraper.cli import main
 
-website = 'https://www.adamchoi.co.uk/overs/detailed'
-path = '/Users/yasir_savanur/Downloads/chromedriver-mac-arm64/chromedriver'
-s = ChromeService(path)
-
-driver.get(website)
-
-wait = WebDriverWait(driver, 10)
-
-# 1. Consent cookies
-consent_button = wait.until(
-    EC.presence_of_element_located(
-        (By.XPATH, "//p[text()='Consent']")
-    )
-)
-
-driver.execute_script("arguments[0].click();", consent_button)
-
-# 2. All matches
-all_matches_button = wait.until(
-    EC.presence_of_element_located(
-        (By.XPATH, "//label[@analytics-event='All matches']")
-    )
-)    
-driver.execute_script("arguments[0].click();", all_matches_button)
-
-# driver.quit()
+if __name__ == "__main__":
+    raise SystemExit(main())
