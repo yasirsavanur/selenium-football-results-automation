@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Deterministic football results fixture</title>
+    <style>
+      body { font-family: sans-serif; margin: 2rem; }
+      label { background: #c62828; color: white; cursor: pointer; padding: 0.5rem 0.8rem; }
+      select { margin: 0.5rem 1rem 1rem 0; }
+      table { border-collapse: collapse; margin: 1rem 0; width: 700px; }
+      td { border: 1px solid #bbb; padding: 0.4rem; text-align: center; }
+      #combined-results { display: none; }
+    </style>
+    <script>
+      function showAllMatches() {
+        document.getElementById("combined-results").style.display = "block";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Football results test fixture</h1>
+    <label for="country">Country</label>
+    <select id="country">
+      <option>England</option>
+      <option>Spain</option>
+    </select>
+
+    <label for="league">League</label>
+    <select id="league">
+      <option>Championship</option>
+      <option>Premier League</option>
+    </select>
+
+    <label for="season">Season</label>
+    <select id="season">
+      <option>2024/2025</option>
+      <option>2025/2026</option>
+    </select>
+
+    <label analytics-event="All matches" onclick="showAllMatches()">All matches</label>
+
+    <div id="combined-results">
+      <detailed-team>
+        <table>
+          <tbody>
+            <tr data-ng-repeat="match in ::dtc.$scope.matches | orderBy: '-timestamp'">
+              <td>16-08-2026</td><td></td><td>Arsenal</td><td>2 - 1</td><td>Chelsea</td><td></td>
+            </tr>
+            <tr data-ng-repeat="match in ::dtc.$scope.matches | orderBy: '-timestamp'">
+              <td>15-08-2026</td><td></td><td>Liverpool</td><td>1 - 1</td><td>Everton</td><td></td>
+            </tr>
+            <tr class="upcoming"><td colspan="6">Next match: Arsenal vs Liverpool</td></tr>
+          </tbody>
+        </table>
+      </detailed-team>
+
+      <detailed-team>
+        <table>
+          <tbody>
+            <tr data-ng-repeat="match in ::dtc.$scope.matches | orderBy: '-timestamp'">
+              <td>16-08-2026</td><td></td><td>Arsenal</td><td>2 - 1</td><td>Chelsea</td><td></td>
+            </tr>
+          </tbody>
+        </table>
+      </detailed-team>
+    </div>
+  </body>
+</html>

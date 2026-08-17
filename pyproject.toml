@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "selenium-football-results"
+version = "1.0.0"
+description = "A portfolio-grade Selenium WebDriver automation project for football results."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Yasir Ahmed Savanur" },
+]
+dependencies = [
+  "selenium>=4.27,<5",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<10",
+  "pytest-cov>=6,<8",
+  "pytest-html>=4.1,<5",
+  "ruff>=0.9,<1",
+]
+
+[project.scripts]
+football-results = "football_results_scraper.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/football_results_scraper"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+markers = [
+  "browser: deterministic tests that launch a local browser",
+  "live: optional tests that access the live website",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["football_results_scraper"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 80
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "UP"]
